@@ -1,14 +1,18 @@
 services:
-  # Backend Service (Web Service)
+  - type: static
+    name: frontend
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
   - type: web
     name: backend
     env: node
-    rootDir: .
-    buildCommand: cd frontend && npm install && npm run build && cd ../backend && npm install
-    startCommand: node backend/index.js
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node index.js
     healthCheckPath: /
     envVars:
-      - key: NODE_ENV
-        value: production
+      - key: MONGO_URI
+        value: mongodb+srv://dbUser:Reddy7989@dineshreddy.go8zyiz.mongodb.net/mental_health_db?retryWrites=true&w=majority
       - key: CORS_ORIGIN
-        value: https://smart-learners-1.onrender.com
+        value: https://user-based-tuning-project.onrender.com
