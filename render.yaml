@@ -1,9 +1,10 @@
 services:
-  - type: static
+  - type: web
     name: frontend
+    runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
-    publishDir: dist
+    staticPublishPath: dist
   - type: web
     name: backend
     env: node
